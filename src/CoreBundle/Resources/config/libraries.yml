@@ -1,0 +1,12 @@
+services:
+    k2_curl:
+        class: CoreBundle\Libraries\K2curl
+
+    array_handler:
+        class: CoreBundle\Libraries\ArrayHandler
+
+    string_handler:
+        class: CoreBundle\Libraries\StringHandler
+
+    date_handler:
+        class: CoreBundle\Libraries\DateHandler

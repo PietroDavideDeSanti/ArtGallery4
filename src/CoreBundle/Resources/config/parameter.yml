@@ -1,0 +1,18 @@
+parameters:
+    default_channel: CSO
+    channel:
+        - nome: Desired
+          codice: DSR
+          sso: false
+        - nome: Total Recall
+          codice: TRC
+          sso: false
+        - nome: MyFinance
+          codice: CSO
+          sso: true
+        - nome: Toshiko
+          codice: TSHK
+          sso: true
+        - nome: iQuote
+          codice: IQTE
+          sso: true

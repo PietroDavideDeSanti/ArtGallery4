@@ -1,0 +1,13 @@
+services:
+    app.doctrine.user_action_listener:
+        class: CoreBundle\Doctrine\UserActionListener
+        arguments:
+              - "@session"
+        tags:
+          - { name: doctrine.event_subscriber }
+
+    app.twig_extension:
+        class: CoreBundle\Twig\AppExtension
+        public: false
+        tags:
+            - { name: twig.extension }

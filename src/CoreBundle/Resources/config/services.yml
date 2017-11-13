@@ -1,0 +1,40 @@
+services:
+    MyException:
+        class: CoreBundle\Services\MyException
+
+    Parameters:
+        class: CoreBundle\Services\Parameters
+
+    MyEntityEditor:
+        class: CoreBundle\Services\MyEntityEditor
+
+    MyEndpointEditor:
+        class: CoreBundle\Services\MyEndpointEditor
+        arguments:
+              - '@doctrine.orm.entity_manager'
+
+    my_serializer:
+        class: CoreBundle\Services\MySerializer
+        arguments:
+              - '@jms_serializer'
+
+    session_user_data_handler:
+        class: CoreBundle\Services\UserDataHandler\SessionUserDataHandler
+        arguments:
+              - '@doctrine.orm.entity_manager'
+
+    sso_user_data_handler:
+        class: CoreBundle\Services\UserDataHandler\SSOUserDataHandler
+        arguments:
+              - '@doctrine.orm.entity_manager'
+              - '%ws_host%'
+
+    acl_handler:
+        class: CoreBundle\Services\AclHandler\AclHandler
+        arguments:
+              - '@doctrine.orm.entity_manager'
+
+    button_handler:
+        class: CoreBundle\Services\ButtonHandler\ButtonHandler
+        arguments:
+              - '@doctrine.orm.entity_manager'
