@@ -1,0 +1,317 @@
+<?php 
+
+namespace DbBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection as Collection;
+//serializer
+use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
+
+/**
+* Utente
+*
+* @ORM\Table(name="utente")
+* @ORM\Entity(repositoryClass="DbBundle\Repository\UtenteRepository")
+*/
+class Utente {
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"Utente", "Utente.id"})
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nome", type="string", length=255, nullable=true)
+     * @Groups({"Utente", "Utente.nome"})
+     */
+    private $nome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cognome", type="string", length=255, nullable=true)
+     * @Groups({"Utente", "Utente.cognome"})
+     */
+    private $cognome;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=true)
+     * @Groups({"Utente", "Utente.username"})
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=true)
+     * @Groups({"Utente", "Utente.password"})
+     */
+    private $password;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_insert", type="datetime", nullable=false)
+     * @Exclude
+     */
+    private $timeInsert;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_delete", type="datetime", nullable=true)
+     * @Exclude
+     */
+    private $timeDelete;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_action", type="datetime", nullable=false)
+     * @Exclude
+     */
+    private $timeAction;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="user_action", type="integer", nullable=false)
+     * @Exclude
+     */
+    private $userAction;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=1, nullable=false)
+     * @Exclude
+     */
+    private $status;
+
+    /**
+     * Constructor
+     */
+    public function __construct(){
+        $this->timeInsert = new \DateTime('now');
+        $this->timeAction = new \DateTime('now');
+        $this->userAction = 0;
+        $this->status = "A";
+
+        #####
+    }  
+
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nome
+     *
+     * @param string $nome
+     *
+     * @return Utente
+     */
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+
+        return $this;
+    }
+
+    /**
+     * Get nome
+     *
+     * @return string
+     */
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    /**
+     * Set cognome
+     *
+     * @param string $cognome
+     *
+     * @return Utente
+     */
+    public function setCognome($cognome)
+    {
+        $this->cognome = $cognome;
+
+        return $this;
+    }
+
+    /**
+     * Get cognome
+     *
+     * @return string
+     */
+    public function getCognome()
+    {
+        return $this->cognome;
+    }
+
+    /**
+     * Set password
+     *
+     * @param string $password
+     *
+     * @return Utente
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get password
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set timeInsert
+     *
+     * @param \DateTime $timeInsert
+     *
+     * @return Utente
+     */
+    public function setTimeInsert($timeInsert)
+    {
+        $this->timeInsert = $timeInsert;
+
+        return $this;
+    }
+
+    /**
+     * Get timeInsert
+     *
+     * @return \DateTime
+     */
+    public function getTimeInsert()
+    {
+        return $this->timeInsert;
+    }
+
+    /**
+     * Set timeDelete
+     *
+     * @param \DateTime $timeDelete
+     *
+     * @return Utente
+     */
+    public function setTimeDelete($timeDelete)
+    {
+        $this->timeDelete = $timeDelete;
+
+        return $this;
+    }
+
+    /**
+     * Get timeDelete
+     *
+     * @return \DateTime
+     */
+    public function getTimeDelete()
+    {
+        return $this->timeDelete;
+    }
+
+    /**
+     * Set timeAction
+     *
+     * @param \DateTime $timeAction
+     *
+     * @return Utente
+     */
+    public function setTimeAction($timeAction)
+    {
+        $this->timeAction = $timeAction;
+
+        return $this;
+    }
+
+    /**
+     * Get timeAction
+     *
+     * @return \DateTime
+     */
+    public function getTimeAction()
+    {
+        return $this->timeAction;
+    }
+
+    /**
+     * Set userAction
+     *
+     * @param integer $userAction
+     *
+     * @return Utente
+     */
+    public function setUserAction($userAction)
+    {
+        $this->userAction = $userAction;
+
+        return $this;
+    }
+
+    /**
+     * Get userAction
+     *
+     * @return integer
+     */
+    public function getUserAction()
+    {
+        return $this->userAction;
+    }
+
+    /**
+     * Set status
+     *
+     * @param string $status
+     *
+     * @return Utente
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+}
