@@ -1,3 +1,18 @@
+gallery:
+    resource: "@GalleryBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+db:
+    resource: "@DbBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 
 app:
     resource: '@AppBundle/Controller/'
