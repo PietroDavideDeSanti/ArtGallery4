@@ -18,7 +18,27 @@ class UtenteRepository extends AbstractRepository {
 
         $utente= $this->findOneBy(array('username'=>$username,'password'=>$password));
 
+
         return $utente;
+
+    }
+
+    public function selectUserFromUname($username){
+        $utente= $this->findOneBy(array('username'=>$username));
+
+        return $utente;
+
+
+    }
+
+    public function insertUtente($em,$utente){
+
+        $em->persist($utente);
+
+
+        $em->flush();
+
+        return $utente->getId();
 
     }
 }

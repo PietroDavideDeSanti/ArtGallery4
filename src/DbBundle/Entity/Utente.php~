@@ -36,11 +36,11 @@ class Utente {
     private $nome;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="cognome", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.cognome"})
-     */
+ * @var string
+ *
+ * @ORM\Column(name="cognome", type="string", length=255, nullable=true)
+ * @Groups({"Utente", "Utente.cognome"})
+ */
     private $cognome;
 
     /**
@@ -100,6 +100,15 @@ class Utente {
     private $status;
 
     /**
+     *
+     * Molti Utente sono associato a molti Profilo
+     *
+     * @ORM\ManyToMany(targetEntity="Profilo", mappedBy="utente",cascade={"persist"})
+     * @Groups({"Utente.profilo"})
+     */
+    private $profilo;
+
+    /**
      * Constructor
      */
     public function __construct(){
@@ -109,7 +118,8 @@ class Utente {
         $this->status = "A";
 
         #####
-    }  
+        $this->profilo = new Collection();
+    }
 
 
 
@@ -169,6 +179,30 @@ class Utente {
     public function getCognome()
     {
         return $this->cognome;
+    }
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     *
+     * @return Utente
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get username
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     /**
@@ -313,5 +347,39 @@ class Utente {
     public function getStatus()
     {
         return $this->status;
+    }
+
+    /**
+     * Add profilo
+     *
+     * @param \DbBundle\Entity\Profilo $profilo
+     *
+     * @return Utente
+     */
+    public function addProfilo(\DbBundle\Entity\Profilo $profilo)
+    {
+        $this->profilo[] = $profilo;
+
+        return $this;
+    }
+
+    /**
+     * Remove profilo
+     *
+     * @param \DbBundle\Entity\Profilo $profilo
+     */
+    public function removeProfilo(\DbBundle\Entity\Profilo $profilo)
+    {
+        $this->profilo->removeElement($profilo);
+    }
+
+    /**
+     * Get profilo
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProfilo()
+    {
+        return $this->profilo;
     }
 }

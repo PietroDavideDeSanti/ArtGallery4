@@ -10,12 +10,12 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\MaxDepth;
 
 /**
-* Utente
+* Profilo
 *
-* @ORM\Table(name="utente")
-* @ORM\Entity(repositoryClass="DbBundle\Repository\UtenteRepository")
+* @ORM\Table(name="z_profilo")
+* @ORM\Entity(repositoryClass="DbBundle\Repository\ProfiloRepository")
 */
-class Utente {
+class Profilo {
 
     /**
      * @var int
@@ -23,41 +23,17 @@ class Utente {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"Utente", "Utente.id"})
+     * @Groups({"Profilo", "Profilo.id"})
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nome", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.nome"})
+     * @ORM\Column(name="nomeProfilo", type="string", length=255, nullable=true)
+     * @Groups({"Profilo", "Profilo.nomeProfilo"})
      */
-    private $nome;
-
-    /**
- * @var string
- *
- * @ORM\Column(name="cognome", type="string", length=255, nullable=true)
- * @Groups({"Utente", "Utente.cognome"})
- */
-    private $cognome;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="username", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.username"})
-     */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.password"})
-     */
-    private $password;
+    private $nomeProfilo;
 
     /**
      * @var \DateTime
@@ -65,6 +41,7 @@ class Utente {
      * @ORM\Column(name="time_insert", type="datetime", nullable=false)
      * @Exclude
      */
+
     private $timeInsert;
 
     /**
@@ -101,12 +78,13 @@ class Utente {
 
     /**
      *
-     * Molti Utente sono associato a molti Profilo
+     * Molti Profilo sono associato a molti Utente
      *
-     * @ORM\ManyToMany(targetEntity="Profilo", mappedBy="profiloUtente",cascade={"persist"})
-     * @Groups({"Utente.profilo"})
+     * @ORM\ManyToMany(targetEntity="Utente", inversedBy="profilo")
+     * @ORM\JoinTable(name="profilo_utente")
+     * @Groups({"Profilo.profiloUtente"})
      */
-    private $profilo;
+    private $profiloUtente;
 
     /**
      * Constructor
@@ -118,8 +96,8 @@ class Utente {
         $this->status = "A";
 
         #####
-        $this->profilo = new Collection();
-    }
+        $this->profiloutente = new Collection();
+    }  
 
 
 
@@ -134,107 +112,11 @@ class Utente {
     }
 
     /**
-     * Set nome
-     *
-     * @param string $nome
-     *
-     * @return Utente
-     */
-    public function setNome($nome)
-    {
-        $this->nome = $nome;
-
-        return $this;
-    }
-
-    /**
-     * Get nome
-     *
-     * @return string
-     */
-    public function getNome()
-    {
-        return $this->nome;
-    }
-
-    /**
-     * Set cognome
-     *
-     * @param string $cognome
-     *
-     * @return Utente
-     */
-    public function setCognome($cognome)
-    {
-        $this->cognome = $cognome;
-
-        return $this;
-    }
-
-    /**
-     * Get cognome
-     *
-     * @return string
-     */
-    public function getCognome()
-    {
-        return $this->cognome;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return Utente
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Utente
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
-
-    /**
      * Set timeInsert
      *
      * @param \DateTime $timeInsert
      *
-     * @return Utente
+     * @return Profilo
      */
     public function setTimeInsert($timeInsert)
     {
@@ -258,7 +140,7 @@ class Utente {
      *
      * @param \DateTime $timeDelete
      *
-     * @return Utente
+     * @return Profilo
      */
     public function setTimeDelete($timeDelete)
     {
@@ -282,7 +164,7 @@ class Utente {
      *
      * @param \DateTime $timeAction
      *
-     * @return Utente
+     * @return Profilo
      */
     public function setTimeAction($timeAction)
     {
@@ -306,7 +188,7 @@ class Utente {
      *
      * @param integer $userAction
      *
-     * @return Utente
+     * @return Profilo
      */
     public function setUserAction($userAction)
     {
@@ -330,7 +212,7 @@ class Utente {
      *
      * @param string $status
      *
-     * @return Utente
+     * @return Profilo
      */
     public function setStatus($status)
     {
@@ -350,36 +232,60 @@ class Utente {
     }
 
     /**
-     * Add profilo
+     * Add profiloUtente
      *
-     * @param \DbBundle\Entity\Profilo $profilo
+     * @param \DbBundle\Entity\Utente $profiloUtente
      *
-     * @return Utente
+     * @return Profilo
      */
-    public function addProfilo(\DbBundle\Entity\Profilo $profilo)
+    public function addProfiloUtente(\DbBundle\Entity\Utente $profiloUtente)
     {
-        $this->profilo[] = $profilo;
+        $this->profiloUtente[] = $profiloUtente;
 
         return $this;
     }
 
     /**
-     * Remove profilo
+     * Remove profiloUtente
      *
-     * @param \DbBundle\Entity\Profilo $profilo
+     * @param \DbBundle\Entity\Utente $profiloUtente
      */
-    public function removeProfilo(\DbBundle\Entity\Profilo $profilo)
+    public function removeProfiloUtente(\DbBundle\Entity\Utente $profiloUtente)
     {
-        $this->profilo->removeElement($profilo);
+        $this->profiloUtente->removeElement($profiloUtente);
     }
 
     /**
-     * Get profilo
+     * Get profiloUtente
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getProfilo()
+    public function getProfiloUtente()
     {
-        return $this->profilo;
+        return $this->profiloUtente;
+    }
+
+    /**
+     * Set nomeProfilo
+     *
+     * @param string $nomeProfilo
+     *
+     * @return Profilo
+     */
+    public function setNomeProfilo($nomeProfilo)
+    {
+        $this->nomeProfilo = $nomeProfilo;
+
+        return $this;
+    }
+
+    /**
+     * Get nomeProfilo
+     *
+     * @return string
+     */
+    public function getNomeProfilo()
+    {
+        return $this->nomeProfilo;
     }
 }

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="it">
+<head>
+	<title>main Page</title>
+	
+  
+        
+<style>
+    
+    .buttonClass {
+
+
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+	background-color: #afc6af; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.buttonClass:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+.bodyClass {
+	background-color: white;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	padding-left: 3%;
+	padding-right: 3%;	
+}
+
+.headerClass {
+    background-color: #F1F1F1;
+    text-align: center;
+    padding: 20px;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+/* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* Change color on hover */
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.menu {
+ overflow: hidden;
+    background-color: #b8e0b9;
+
+}
+
+.buttonContainer{
+    text-align: center;
+ 
+}
+
+.buttonContainer button, .buttonContainer form{
+    display: inline-block;
+    
+    
+}
+
+    
+</style>
+
+</head>
+	
+<body class="bodyClass">
+    
+
+
+    
+    <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto  {{globalVars.session.user.nome}} !! </h2></header>
+ 
+    
+                <content class='headerClass'>
+    
+    
+   </header>
+ 
+    
+<form action='/inserimentoOpera' method='post'>
+        <button type='submit' name='insertOperaName' class='buttonClass'> inserisci opera </button>
+</form>
+
+
+<form action='/listaOpereInserite' method='post'>
+                 <button type='submit' name='listaName' class='buttonClass' > Vai a Galleria </button>
+</form>
+
+<main class='menu'>
+ 
+<div class='buttonContainer'>
+
+{% if app.session.get('userAdmin') %}
+    <form action='/leggiDb' method='post'>
+                 <button type='submit' name='dbNameAccess' class='buttonClass'> Accedi al dB </button>
+   </form>
+{% endif %}
+
+</div>
+
+ 
+
+<h2>Cerca opera per Autore:</h2>
+
+
+<form action='/listaAutori' method='post'>
+          <button type='submit' name='listaAutName' class='buttonClass'> Vai a lista autori </button>
+</form>
+
+
+</main>
+
+<footer class='headerClass '>
+<form action='/logOut' method='post'>
+        <button type='submit' name='logOut' class='buttonClass'> Logout </button>
+</form> 
+</footer>
+   
+   
+
+
+
+
+
+    </body>
+    </html>
