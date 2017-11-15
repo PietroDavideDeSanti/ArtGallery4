@@ -103,22 +103,20 @@ class UserModel {
             //creo un profilo
             $profilo=new Profilo();
             $profilo->setNomeProfilo("user");
-            $profilo->addProfiloUtente($utente);
+            //$profilo->addProfiloUtente($utente);
 
-            //$utente->addProfilo($profilo);
+            $utente->addProfilo($profilo);
 
             // chiamo la repository di utente
 
             $repository= $this->em->getRepository("DbBundle:Utente");
             $repositoryProfilo= $this->em->getRepository("DbBundle:Profilo");
 
-            $idProf=$repositoryProfilo->insertProfilo($this->em,$profilo);
+            
             $id=$repository->insertUtente($this->em,$utente);
+            //$idProf=$repositoryProfilo->insertProfilo($this->em,$profilo);
 
 
-
-            var_dump($idProf);
-            die();
 
             $response->data = $id;
             return $response;

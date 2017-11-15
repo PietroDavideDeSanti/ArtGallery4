@@ -80,8 +80,7 @@ class Profilo {
      *
      * Molti Profilo sono associato a molti Utente
      *
-     * @ORM\ManyToMany(targetEntity="Utente", inversedBy="profilo",cascade={"persist"})
-     * @ORM\JoinTable(name="profilo_utente")
+     * @ORM\ManyToMany(targetEntity="Utente", mappedBy="profilo") 
      * @Groups({"Profilo.profiloUtente"})
      */
     private $profiloUtente;
