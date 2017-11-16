@@ -39,6 +39,11 @@ class UserModel {
             $user=$repository->selectUserWhere($params->data["username"],$params->data["password"]);
 
 
+           if($user) {
+               $globalVars->session->set("user",$user);
+           }
+
+
 
             $response->data = $user;
             return $response;
@@ -100,21 +105,28 @@ class UserModel {
             $utente->setUsername($globalVars->params->data["username"]);
             $utente->setPassword($globalVars->params->data["password"]);
 
-            //creo un profilo
-            $profilo=new Profilo();
-            $profilo->setNomeProfilo("user");
-            //$profilo->addProfiloUtente($utente);
 
-            $utente->addProfilo($profilo);
+            //creo un profilo
+            $prof=new Profilo();
+            $prof->setNomeProfilo("user");
+
+
+
+            //prendo il profilo da db
+            //$repositoryProfilo= $this->em->getRepository("DbBundle:Profilo");
+            //$prof=$repositoryProfilo->getProfilo("user");
+
+            $utente->addProfilo($prof);
+
 
             // chiamo la repository di utente
 
             $repository= $this->em->getRepository("DbBundle:Utente");
-            $repositoryProfilo= $this->em->getRepository("DbBundle:Profilo");
+
 
             
             $id=$repository->insertUtente($this->em,$utente);
-            //$idProf=$repositoryProfilo->insertProfilo($this->em,$profilo);
+
 
 
 

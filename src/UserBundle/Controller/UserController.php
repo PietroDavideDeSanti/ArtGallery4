@@ -26,7 +26,7 @@ use Symfony\Component\HttpFoundation\Response;
 class UserController extends K2Controller{
 
     /**
-     * manda alla finestra di login
+     * processa i dati del login
      * @Route("/loginProcessaDati", name="user_login")
      * @Method("POST");
      */
@@ -55,22 +55,19 @@ class UserController extends K2Controller{
             // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
 
 
-            // se non c' è nessuna corrispondenza username e password , $response->data=NULL
-            if($response->data) {
 
-                //metto l'utente in sessione
-                $globalVars->session->user=$response->data;
+            // se non c' è nessuna corrispondenza username e password , $response->data=NULL
+
+
+
 
 
                 // Lancio il render della view:
+            return $this->render('GalleryBundle:Default:home.html.twig',array('twig'=>$response));
 
-                return $this->render('GalleryBundle:Default:home.html.twig',array('globalVars'=>$globalVars));
 
 
-            }
-            else{
-                return $this->render('UserBundle:Default:viewNonUtenticato.html.twig');
-            }
+
 
         } catch (HttpException $e) {
             return $this->get("MyException")->errorHttpHandler($e);
@@ -221,6 +218,8 @@ class UserController extends K2Controller{
             $model = new UserModel($em, $container);
             $response = $model->{__FUNCTION__}($globalVars, $response);
             // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+
 
             // Lancio il render della view:
             return $this->render("UserBundle:Default:viewUtenteInserito.html.twig", array("idUtente" => $response->data));

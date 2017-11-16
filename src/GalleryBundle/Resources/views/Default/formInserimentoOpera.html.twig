@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="it">
+<head>
+	<title>inserimento opera</title>
+                    <link href="/view/css/form.css" rel="stylesheet" type="text/css"> 
+</head>
+
+<body>
+
+
+
+<h1>Inserisci Opera</h1>
+
+<form action='/processaDatiOpera' method='post'>
+  <input type='text' placeholder='inserisci titolo' name='titolo' required>
+ <input type='text' placeholder='inserisci tecnica' name='tecnica' required> 
+ <input type='number' placeholder='inserisci dimensioni' name='dimensioni' required> 
+ <input type='text' placeholder='inserisci data' name='data' required> </br>
+ <div><h2>Inserisci dati autore:  </h2><img src='avatar.png' width='70' height='70' alt='avatar'/></div>
+ <input type='text' placeholder='inserisci nome' name='nome' required> 
+ <input type='number' placeholder='inserisci eta' name='eta' required> 
+
+         <button type='submit' name='insertName' class='buttonClass' > inserisci opera </button>
+
+</form>
+
+
+
+
+
+    
+<form action='/tornaHome' method='post' >
+    <div> <button type='submit' name='backName2' > << Indietro</button> </div>
+</form>
+    
+
+
+ </body>
+ </html>

@@ -10,12 +10,12 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\MaxDepth;
 
 /**
-* Utente
+* Autore
 *
-* @ORM\Table(name="utente")
-* @ORM\Entity(repositoryClass="DbBundle\Repository\UtenteRepository")
+* @ORM\Table(name="autore")
+* @ORM\Entity(repositoryClass="DbBundle\Repository\AutoreRepository")
 */
-class Utente {
+class Autore {
 
     /**
      * @var int
@@ -23,7 +23,7 @@ class Utente {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"Utente", "Utente.id"})
+     * @Groups({"Autore", "Autore.id"})
      */
     private $id;
 
@@ -31,33 +31,17 @@ class Utente {
      * @var string
      *
      * @ORM\Column(name="nome", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.nome"})
+     * @Groups({"Autore", "Autore.nome"})
      */
     private $nome;
 
     /**
- * @var string
- *
- * @ORM\Column(name="cognome", type="string", length=255, nullable=true)
- * @Groups({"Utente", "Utente.cognome"})
- */
-    private $cognome;
-
-    /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="username", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.username"})
+     * @ORM\Column(name="eta", type="integer", nullable=true)
+     * @Groups({"Autore", "Autore.eta"})
      */
-    private $username;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.password"})
-     */
-    private $password;
+    private $eta;
 
     /**
      * @var \DateTime
@@ -101,18 +85,10 @@ class Utente {
 
     /**
      *
-     * Molti Utente sono associato a molti Profilo (profilo è una lista di profili)
+     * Un Autore e' associato a molti Opera
      *
-     * @ORM\ManyToMany(targetEntity="Profilo",inversedBy="profiloUtente",cascade={"persist"})
-     * @ORM\JoinTable(name="utente_profilo")
-     * @Groups({"Utente.profilo"})
-     */
-    private $profilo;
-
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="Opera", mappedBy="utenteId")
-     * @Groups({"Utente.opere"})
+     * @ORM\OneToMany(targetEntity="Opera", mappedBy="autoreId")
+     * @Groups({"Autore.opere"})
      */
     private $opere;
 
@@ -126,9 +102,8 @@ class Utente {
         $this->status = "A";
 
         #####
-        $this->profilo = new Collection();
         $this->opere = new Collection();
-    }
+    }  
 
 
 
@@ -147,7 +122,7 @@ class Utente {
      *
      * @param string $nome
      *
-     * @return Utente
+     * @return Autore
      */
     public function setNome($nome)
     {
@@ -167,75 +142,27 @@ class Utente {
     }
 
     /**
-     * Set cognome
+     * Set eta
      *
-     * @param string $cognome
+     * @param integer $eta
      *
-     * @return Utente
+     * @return Autore
      */
-    public function setCognome($cognome)
+    public function setEta($eta)
     {
-        $this->cognome = $cognome;
+        $this->eta = $eta;
 
         return $this;
     }
 
     /**
-     * Get cognome
+     * Get eta
      *
-     * @return string
+     * @return integer
      */
-    public function getCognome()
+    public function getEta()
     {
-        return $this->cognome;
-    }
-
-    /**
-     * Set username
-     *
-     * @param string $username
-     *
-     * @return Utente
-     */
-    public function setUsername($username)
-    {
-        $this->username = $username;
-
-        return $this;
-    }
-
-    /**
-     * Get username
-     *
-     * @return string
-     */
-    public function getUsername()
-    {
-        return $this->username;
-    }
-
-    /**
-     * Set password
-     *
-     * @param string $password
-     *
-     * @return Utente
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
-
-        return $this;
-    }
-
-    /**
-     * Get password
-     *
-     * @return string
-     */
-    public function getPassword()
-    {
-        return $this->password;
+        return $this->eta;
     }
 
     /**
@@ -243,7 +170,7 @@ class Utente {
      *
      * @param \DateTime $timeInsert
      *
-     * @return Utente
+     * @return Autore
      */
     public function setTimeInsert($timeInsert)
     {
@@ -267,7 +194,7 @@ class Utente {
      *
      * @param \DateTime $timeDelete
      *
-     * @return Utente
+     * @return Autore
      */
     public function setTimeDelete($timeDelete)
     {
@@ -291,7 +218,7 @@ class Utente {
      *
      * @param \DateTime $timeAction
      *
-     * @return Utente
+     * @return Autore
      */
     public function setTimeAction($timeAction)
     {
@@ -315,7 +242,7 @@ class Utente {
      *
      * @param integer $userAction
      *
-     * @return Utente
+     * @return Autore
      */
     public function setUserAction($userAction)
     {
@@ -339,7 +266,7 @@ class Utente {
      *
      * @param string $status
      *
-     * @return Utente
+     * @return Autore
      */
     public function setStatus($status)
     {
@@ -359,45 +286,11 @@ class Utente {
     }
 
     /**
-     * Add profilo
-     *
-     * @param \DbBundle\Entity\Profilo $profilo
-     *
-     * @return Utente
-     */
-    public function addProfilo(\DbBundle\Entity\Profilo $profilo)
-    {
-        $this->profilo[] = $profilo;
-
-        return $this;
-    }
-
-    /**
-     * Remove profilo
-     *
-     * @param \DbBundle\Entity\Profilo $profilo
-     */
-    public function removeProfilo(\DbBundle\Entity\Profilo $profilo)
-    {
-        $this->profilo->removeElement($profilo);
-    }
-
-    /**
-     * Get profilo
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProfilo()
-    {
-        return $this->profilo;
-    }
-
-    /**
      * Add opere
      *
      * @param \DbBundle\Entity\Opera $opere
      *
-     * @return Utente
+     * @return Autore
      */
     public function addOpere(\DbBundle\Entity\Opera $opere)
     {

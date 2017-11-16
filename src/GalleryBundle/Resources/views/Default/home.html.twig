@@ -91,14 +91,14 @@
 </head>
 	
 <body class="bodyClass">
-    
 
+{% if twig.data %}
 
     
-    <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto  {{globalVars.session.user.nome}} !! </h2></header>
+    <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto {{ app.session.get('user').nome }}  !! </h2></header>
  
     
-                <content class='headerClass'>
+                <content class='headerClass'/>
     
     
    </header>
@@ -117,7 +117,7 @@
  
 <div class='buttonContainer'>
 
-{% if app.session.get('userAdmin') %}
+{% if app.session.get('user') %}
     <form action='/leggiDb' method='post'>
                  <button type='submit' name='dbNameAccess' class='buttonClass'> Accedi al dB </button>
    </form>
@@ -142,12 +142,18 @@
         <button type='submit' name='logOut' class='buttonClass'> Logout </button>
 </form> 
 </footer>
-   
-   
+
+{% else %}
+    <h1>NON UTENTICATO!</h1>
 
 
+    <form action='/' method='post'>
+
+        <button type='submit' name='recName'>torna a login</button>
+    </form>
+
+{% endif %}
 
 
-
-    </body>
-    </html>
+</body>
+</html>

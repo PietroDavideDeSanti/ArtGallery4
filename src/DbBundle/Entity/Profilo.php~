@@ -12,7 +12,7 @@ use JMS\Serializer\Annotation\MaxDepth;
 /**
 * Profilo
 *
-* @ORM\Table(name="z_profilo")
+* @ORM\Table(name="profilo")
 * @ORM\Entity(repositoryClass="DbBundle\Repository\ProfiloRepository")
 */
 class Profilo {
@@ -78,10 +78,9 @@ class Profilo {
 
     /**
      *
-     * Molti Profilo sono associato a molti Utente
+     * Molti Profilo sono associato a molti Utente (profiloUtente è una lista di utenti)
      *
-     * @ORM\ManyToMany(targetEntity="Utente", inversedBy="profilo")
-     * @ORM\JoinTable(name="profilo_utente")
+     * @ORM\ManyToMany(targetEntity="Utente", mappedBy="profilo") 
      * @Groups({"Profilo.profiloUtente"})
      */
     private $profiloUtente;

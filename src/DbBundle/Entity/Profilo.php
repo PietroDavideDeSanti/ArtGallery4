@@ -78,7 +78,7 @@ class Profilo {
 
     /**
      *
-     * Molti Profilo sono associato a molti Utente
+     * Molti Profilo sono associato a molti Utente (profiloUtente è una lista di utenti)
      *
      * @ORM\ManyToMany(targetEntity="Utente", mappedBy="profilo") 
      * @Groups({"Profilo.profiloUtente"})

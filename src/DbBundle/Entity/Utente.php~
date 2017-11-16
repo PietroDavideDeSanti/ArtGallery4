@@ -101,12 +101,20 @@ class Utente {
 
     /**
      *
-     * Molti Utente sono associato a molti Profilo
+     * Molti Utente sono associato a molti Profilo (profilo è una lista di profili)
      *
-     * @ORM\ManyToMany(targetEntity="Profilo", mappedBy="utente",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Profilo",inversedBy="profiloUtente",cascade={"persist"})
+     * @ORM\JoinTable(name="utente_profilo")
      * @Groups({"Utente.profilo"})
      */
     private $profilo;
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Opera", mappedBy="utenteId")
+     * @Groups({"Utente.opere"})
+     */
+    private $opere;
 
     /**
      * Constructor
@@ -119,6 +127,7 @@ class Utente {
 
         #####
         $this->profilo = new Collection();
+        $this->opere = new Collection();
     }
 
 
@@ -381,5 +390,39 @@ class Utente {
     public function getProfilo()
     {
         return $this->profilo;
+    }
+
+    /**
+     * Add opere
+     *
+     * @param \DbBundle\Entity\Opera $opere
+     *
+     * @return Utente
+     */
+    public function addOpere(\DbBundle\Entity\Opera $opere)
+    {
+        $this->opere[] = $opere;
+
+        return $this;
+    }
+
+    /**
+     * Remove opere
+     *
+     * @param \DbBundle\Entity\Opera $opere
+     */
+    public function removeOpere(\DbBundle\Entity\Opera $opere)
+    {
+        $this->opere->removeElement($opere);
+    }
+
+    /**
+     * Get opere
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getOpere()
+    {
+        return $this->opere;
     }
 }

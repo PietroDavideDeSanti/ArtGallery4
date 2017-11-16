@@ -10,12 +10,12 @@ use JMS\Serializer\Annotation\Groups;
 use JMS\Serializer\Annotation\MaxDepth;
 
 /**
-* Utente
+* Opera
 *
-* @ORM\Table(name="utente")
-* @ORM\Entity(repositoryClass="DbBundle\Repository\UtenteRepository")
+* @ORM\Table(name="opera")
+* @ORM\Entity(repositoryClass="DbBundle\Repository\OperaRepository")
 */
-class Utente {
+class Opera {
 
     /**
      * @var int
@@ -23,41 +23,63 @@ class Utente {
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"Utente", "Utente.id"})
+     * @Groups({"Opera", "Opera.id"})
      */
     private $id;
 
     /**
-     * @var string
+     * Molti Opera sono associati ad un unico Autore
      *
-     * @ORM\Column(name="nome", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.nome"})
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Autore", inversedBy="opere")
+     * @ORM\JoinColumn(name="autore_id", referencedColumnName="id")
+     * @Groups({"Opera.autoreId"})
      */
-    private $nome;
+    private $autoreId;
 
     /**
- * @var string
- *
- * @ORM\Column(name="cognome", type="string", length=255, nullable=true)
- * @Groups({"Utente", "Utente.cognome"})
- */
-    private $cognome;
+     *
+     * @var integer
+     *
+     * @ORM\ManyToOne(targetEntity="Utente", inversedBy="opere")
+     * @ORM\JoinColumn(name="utente_id", referencedColumnName="id")
+     * @Groups({"Opera.utenteId"})
+     */
+    private $utenteId;
+
+
 
     /**
      * @var string
      *
-     * @ORM\Column(name="username", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.username"})
+     * @ORM\Column(name="titolo", type="string", length=255, nullable=true)
+     * @Groups({"Opera", "Opera.titolo"})
      */
-    private $username;
+    private $titolo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=255, nullable=true)
-     * @Groups({"Utente", "Utente.password"})
+     * @ORM\Column(name="tecnica", type="string", length=255, nullable=true)
+     * @Groups({"Opera", "Opera.tecnica"})
      */
-    private $password;
+    private $tecnica;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dimensioni", type="integer", nullable=true)
+     * @Groups({"Opera", "Opere.dimensioni"})
+     */
+    private $dimensioni;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="data", type="date", nullable=false)
+     */
+    private $data;
 
     /**
      * @var \DateTime
@@ -100,23 +122,6 @@ class Utente {
     private $status;
 
     /**
-     *
-     * Molti Utente sono associato a molti Profilo (profilo è una lista di profili)
-     *
-     * @ORM\ManyToMany(targetEntity="Profilo",inversedBy="profiloUtente",cascade={"persist"})
-     * @ORM\JoinTable(name="utente_profilo")
-     * @Groups({"Utente.profilo"})
-     */
-    private $profilo;
-
-    /**
-     *
-     * @ORM\OneToMany(targetEntity="Opera", mappedBy="utenteId")
-     * @Groups({"Utente.opere"})
-     */
-    private $opere;
-
-    /**
      * Constructor
      */
     public function __construct(){
@@ -126,8 +131,8 @@ class Utente {
         $this->status = "A";
 
         #####
-        $this->profilo = new Collection();
-        $this->opere = new Collection();
+
+        $this->utenti = new Collection();
     }
 
 
@@ -143,99 +148,99 @@ class Utente {
     }
 
     /**
-     * Set nome
+     * Set titolo
      *
-     * @param string $nome
+     * @param string $titolo
      *
-     * @return Utente
+     * @return Opera
      */
-    public function setNome($nome)
+    public function setTitolo($titolo)
     {
-        $this->nome = $nome;
+        $this->titolo = $titolo;
 
         return $this;
     }
 
     /**
-     * Get nome
+     * Get titolo
      *
      * @return string
      */
-    public function getNome()
+    public function getTitolo()
     {
-        return $this->nome;
+        return $this->titolo;
     }
 
     /**
-     * Set cognome
+     * Set tecnica
      *
-     * @param string $cognome
+     * @param string $tecnica
      *
-     * @return Utente
+     * @return Opera
      */
-    public function setCognome($cognome)
+    public function setTecnica($tecnica)
     {
-        $this->cognome = $cognome;
+        $this->tecnica = $tecnica;
 
         return $this;
     }
 
     /**
-     * Get cognome
+     * Get tecnica
      *
      * @return string
      */
-    public function getCognome()
+    public function getTecnica()
     {
-        return $this->cognome;
+        return $this->tecnica;
     }
 
     /**
-     * Set username
+     * Set dimensioni
      *
-     * @param string $username
+     * @param integer $dimensioni
      *
-     * @return Utente
+     * @return Opera
      */
-    public function setUsername($username)
+    public function setDimensioni($dimensioni)
     {
-        $this->username = $username;
+        $this->dimensioni = $dimensioni;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get dimensioni
      *
-     * @return string
+     * @return integer
      */
-    public function getUsername()
+    public function getDimensioni()
     {
-        return $this->username;
+        return $this->dimensioni;
     }
 
     /**
-     * Set password
+     * Set data
      *
-     * @param string $password
+     * @param \DateTime $data
      *
-     * @return Utente
+     * @return Opera
      */
-    public function setPassword($password)
+    public function setData($data)
     {
-        $this->password = $password;
+        $this->data = $data;
 
         return $this;
     }
 
     /**
-     * Get password
+     * Get data
      *
-     * @return string
+     * @return \DateTime
      */
-    public function getPassword()
+    public function getData()
     {
-        return $this->password;
+        return $this->data;
     }
 
     /**
@@ -243,7 +248,7 @@ class Utente {
      *
      * @param \DateTime $timeInsert
      *
-     * @return Utente
+     * @return Opera
      */
     public function setTimeInsert($timeInsert)
     {
@@ -267,7 +272,7 @@ class Utente {
      *
      * @param \DateTime $timeDelete
      *
-     * @return Utente
+     * @return Opera
      */
     public function setTimeDelete($timeDelete)
     {
@@ -291,7 +296,7 @@ class Utente {
      *
      * @param \DateTime $timeAction
      *
-     * @return Utente
+     * @return Opera
      */
     public function setTimeAction($timeAction)
     {
@@ -315,7 +320,7 @@ class Utente {
      *
      * @param integer $userAction
      *
-     * @return Utente
+     * @return Opera
      */
     public function setUserAction($userAction)
     {
@@ -339,7 +344,7 @@ class Utente {
      *
      * @param string $status
      *
-     * @return Utente
+     * @return Opera
      */
     public function setStatus($status)
     {
@@ -359,70 +364,84 @@ class Utente {
     }
 
     /**
-     * Add profilo
+     * Set autoreId
      *
-     * @param \DbBundle\Entity\Profilo $profilo
+     * @param \DbBundle\Entity\Autore $autoreId
      *
-     * @return Utente
+     * @return Opera
      */
-    public function addProfilo(\DbBundle\Entity\Profilo $profilo)
+    public function setAutoreId(\DbBundle\Entity\Autore $autoreId = null)
     {
-        $this->profilo[] = $profilo;
+        $this->autoreId = $autoreId;
 
         return $this;
     }
 
     /**
-     * Remove profilo
+     * Get autoreId
      *
-     * @param \DbBundle\Entity\Profilo $profilo
+     * @return \DbBundle\Entity\Autore
      */
-    public function removeProfilo(\DbBundle\Entity\Profilo $profilo)
+    public function getAutoreId()
     {
-        $this->profilo->removeElement($profilo);
+        return $this->autoreId;
     }
 
     /**
-     * Get profilo
+     * Set utenteId
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @param \DbBundle\Entity\Utente $utenteId
+     *
+     * @return Opera
      */
-    public function getProfilo()
+    public function setUtenteId(\DbBundle\Entity\Utente $utenteId = null)
     {
-        return $this->profilo;
-    }
-
-    /**
-     * Add opere
-     *
-     * @param \DbBundle\Entity\Opera $opere
-     *
-     * @return Utente
-     */
-    public function addOpere(\DbBundle\Entity\Opera $opere)
-    {
-        $this->opere[] = $opere;
+        $this->utenteId = $utenteId;
 
         return $this;
     }
 
     /**
-     * Remove opere
+     * Get utenteId
      *
-     * @param \DbBundle\Entity\Opera $opere
+     * @return \DbBundle\Entity\Utente
      */
-    public function removeOpere(\DbBundle\Entity\Opera $opere)
+    public function getUtenteId()
     {
-        $this->opere->removeElement($opere);
+        return $this->utenteId;
     }
 
     /**
-     * Get opere
+     * Add utenti
+     *
+     * @param \DbBundle\Entity\Utente $utenti
+     *
+     * @return Opera
+     */
+    public function addUtenti(\DbBundle\Entity\Utente $utenti)
+    {
+        $this->utenti[] = $utenti;
+
+        return $this;
+    }
+
+    /**
+     * Remove utenti
+     *
+     * @param \DbBundle\Entity\Utente $utenti
+     */
+    public function removeUtenti(\DbBundle\Entity\Utente $utenti)
+    {
+        $this->utenti->removeElement($utenti);
+    }
+
+    /**
+     * Get utenti
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getOpere()
+    public function getUtenti()
     {
-        return $this->opere;
+        return $this->utenti;
     }
 }
