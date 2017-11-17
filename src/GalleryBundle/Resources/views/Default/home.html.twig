@@ -92,7 +92,7 @@
 	
 <body class="bodyClass">
 
-{% if twig.data %}
+{% if twig.data or app.session.get('user') %}
 
     
     <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto {{ app.session.get('user').nome }}  !! </h2></header>

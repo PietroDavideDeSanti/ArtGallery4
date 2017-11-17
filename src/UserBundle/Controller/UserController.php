@@ -55,13 +55,6 @@ class UserController extends K2Controller{
             // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
 
 
-
-            // se non c' è nessuna corrispondenza username e password , $response->data=NULL
-
-
-
-
-
                 // Lancio il render della view:
             return $this->render('GalleryBundle:Default:home.html.twig',array('twig'=>$response));
 
@@ -138,13 +131,8 @@ class UserController extends K2Controller{
             // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
 
 
-            if($response->data){
-                return $this->render("UserBundle:Default:viewPass.html.twig", array("user" => $response->data));
-            }
-            else {
-                // Lancio il render della view:
-                return $this->render("UserBundle:Default:viewNotPass.html.twig");
-            }
+            return $this->render("UserBundle:Default:viewPass.html.twig", array("twig" => $response));
+
         } catch (HttpException $e) {
             return $this->get("MyException")->errorHttpHandler($e);
         }
@@ -219,10 +207,8 @@ class UserController extends K2Controller{
             $response = $model->{__FUNCTION__}($globalVars, $response);
             // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
 
-
-
             // Lancio il render della view:
-            return $this->render("UserBundle:Default:viewUtenteInserito.html.twig", array("idUtente" => $response->data));
+            return $this->render("UserBundle:Default:viewUtenteInserito.html.twig", array("twig" => $response));
 
         } catch (HttpException $e) {
             return $this->get("MyException")->errorHttpHandler($e);

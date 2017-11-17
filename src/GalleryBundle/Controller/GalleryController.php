@@ -86,11 +86,50 @@ class GalleryController extends K2Controller{
             $model = new GalleryModel($em, $container);
             $response = $model->{__FUNCTION__}($globalVars, $response);
             // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
-            dump($globalVars);
+
+
+            // Lancio il render della view:
+            return $this->render("GalleryBundle:Default:home.html.twig",array('twig'=>$response));
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * vengo presi i dati dalla form, vengono validati e viene aggiunta un opera nel db
+     * @Route("/processaDatiOpera", name="gallery_processadatiopera")
+     * @Method("POST");
+     */
+    public function processaDatiOpera(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->post = "GalleryBundle\Request\Post\\" . ucfirst(__FUNCTION__);
+            $config->login = false;
+            $config->aclcode = "/processaDatiOpera";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new GalleryModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            dump("evvai!!");
             die();
 
             // Lancio il render della view:
-            return $this->render("GalleryBundle:Default:home.html.twig",array('globalVars'=>$globalVars));
+            return $this->render("<html><body>Sator arepo tenet opera rotas</body></html>", array("twig" => $response));
 
         } catch (HttpException $e) {
             return $this->get("MyException")->errorHttpHandler($e);

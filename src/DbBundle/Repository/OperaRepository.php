@@ -14,4 +14,15 @@ class OperaRepository extends AbstractRepository {
     public function get_all_by_autore_id($id, $sort=array(), $limit=null, $offset=null) {
         return parent::findBy( array('autoreId' => $id, 'status' => 'A'), $sort, $limit, $offset);
     }
+
+
+
+    public function insertOpera($em,$opera){
+
+        $em->persist($opera);
+
+        $em->flush();
+        return $opera->getId();
+
+    }
 }

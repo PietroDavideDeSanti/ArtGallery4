@@ -111,7 +111,7 @@ class Utente {
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="Opera", mappedBy="utenteId")
+     * @ORM\OneToMany(targetEntity="Opera", mappedBy="utenteId",cascade={"persist","remove"})
      * @Groups({"Utente.opere"})
      */
     private $opere;

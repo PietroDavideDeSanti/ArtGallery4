@@ -22,22 +22,8 @@ class ProfiloRepository extends AbstractRepository {
 
 
     public function getProfilo($nomeProfilo){
-        //oggetto profilo
-        //$results= $this->findOneBy(array('id'=>6));
-        // nomeProfilo
 
         $results=$this->findOneBy(array('nomeProfilo'=>$nomeProfilo));
-
-        /*
-        $connection = $em->getConnection();
-
-        $statement = $connection->prepare("SELECT * 
-                                           FROM profilo
-                                           WHERE nomeProfilo='user' " );
-
-        $statement->execute();
-        $results = $statement->fetch();
-        */
 
         
         return $results;
