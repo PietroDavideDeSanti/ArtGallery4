@@ -96,41 +96,57 @@ class UserModel {
     public function processaDatiReg (GlobalVars $globalVars, Response $response){
         try{
 
-            //creo gli oggetti
-
-
+           //cerco il profilo user
+            
+            $prof=$this->em->getRepository("DbBundle:Profilo")->findOneBy(array('nomeProfilo'=>'user'));
+            
+            if(!$prof){
+                //creo un profilo
+                $prof=new Profilo();
+                $prof->setNomeProfilo("user");
+                $this->em->persist($prof);
+            }
+           
+          
             $utente=new Utente();
             $utente->setNome($globalVars->params->data["nome"]);
             $utente->setCognome($globalVars->params->data["cognome"]);
             $utente->setUsername($globalVars->params->data["username"]);
             $utente->setPassword($globalVars->params->data["password"]);
-
-
-            //creo un profilo
-            $prof=new Profilo();
-            $prof->setNomeProfilo("user");
-
-
-
-            //prendo il profilo da db
-            //$repositoryProfilo= $this->em->getRepository("DbBundle:Profilo");
-            //$prof=$repositoryProfilo->getProfilo("user");
-
             $utente->addProfilo($prof);
-
-
+          
             // chiamo la repository di utente
 
             $repository= $this->em->getRepository("DbBundle:Utente");
 
-
-            
             $id=$repository->insertUtente($this->em,$utente);
 
-
-
-
             $response->data = $id;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function adminAccess (GlobalVars $globalVars, Response $response){
+        try{
+
+            $response->data = '';
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function loginAdmin (GlobalVars $globalVars, Response $response){
+        try{
+            
+            //verifico se l'utente è un amministratore
+            die();
+
+            $response->data = '';
             return $response;
 
         } catch (DBALException $e) {

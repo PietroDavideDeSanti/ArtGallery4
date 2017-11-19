@@ -25,4 +25,23 @@ class OperaRepository extends AbstractRepository {
         return $opera->getId();
 
     }
+    
+    
+    public function getAuthors($em,$idUtente){
+        
+        $connection = $em->getConnection();
+        
+        $statement = $connection->prepare("SELECT distinct  autore_id,nome,eta
+                                            FROM(SELECT *
+                                                 FROM opera
+		                                 WHERE utente_id=$idUtente) op join autore a on op.autore_id=a.id");
+  
+        $statement->execute();
+            // result contiene tutte le opere inserite dall'utente con id = $idUtente
+        $results = $statement->fetchAll();
+            
+       
+        return $results;
+        
+    }
 }

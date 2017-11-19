@@ -1,0 +1,33 @@
+<h1> Tabella in Db</h1>
+
+
+{% if twig.data %}
+<ul>
+    {% for tupla in twig.data %} 
+       <table>
+         
+          {% for val in tupla %}
+               {{ val }} &nbsp
+           {% endfor %}
+    {% endfor %}
+             </br>
+             
+        </table>
+        
+</ul>
+
+ {% else %}    
+     
+ <h1>Tabella non trovata!!</h1>
+     
+ {% endif  %}
+             
+ 
+
+
+    
+<form action='/tornaHome' method='post' >
+    <div> <button type='submit' name='backName2' > << Indietro</button> </div>
+</form>
+    
+    

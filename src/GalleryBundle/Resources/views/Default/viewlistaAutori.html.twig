@@ -1,0 +1,19 @@
+<h1> Lista autori</h1>
+
+<ul>
+    {% for autore in twig.data %}
+        <li>Nome:{{ autore.nome }}</br> Età: {{ autore.eta }}</br>
+            <form action='/cercaOpereAutore' method='post'>
+                <button type='submit' name='tasto' class='buttonClass' value='{{autore.autore_id}}'>lista Opere</button>  
+            </form>
+        </li>
+        </br>
+        </br>
+    {% endfor %}
+</ul>
+
+<form action='/tornaHome' method='post' >
+    <div> <button type='submit' name='backName2' > << Indietro</button> </div>
+</form>
+    
+    

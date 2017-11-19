@@ -1,0 +1,27 @@
+<h1> Lista opere inserite</h1>
+
+<ul>
+    {% for opera in twig.data %}
+        
+        <li>
+            {{ opera.titolo }}</br>{{opera.tecnica}}</br>{{opera.dimensioni}}</br>{{opera.getAutoreId().getNome()}}</br>
+            <form action='/dettagliAutore' method='post'>
+                <button type='submit' name='tasto' class='buttonClass' value='{{opera.getAutoreId().getId()}}'>dettagli autore</button>
+            </form>
+            <form action='/eliminaOpera' method='post'>
+                <button type='submit' name='tastoDelete' class='buttonClass' value='{{opera.getId()}}'>cancella</button>
+            </form>
+        </li>
+        </br>
+        </br>
+    {% endfor %}
+</ul>
+ 
+{# getAutoreId() restituisce l'oggetto autore #}
+
+    
+<form action='/tornaHome' method='post' >
+    <div> <button type='submit' name='backName2' > << Indietro</button> </div>
+</form>
+    
+    

@@ -196,10 +196,6 @@ class UserController extends K2Controller{
 
             //se arrivo in questo punto ho passato la validazione
 
-
-            //------
-
-
             // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
             $em = $this->getDoctrine()->getManager();
             $container = $this->container;
@@ -209,6 +205,77 @@ class UserController extends K2Controller{
 
             // Lancio il render della view:
             return $this->render("UserBundle:Default:viewUtenteInserito.html.twig", array("twig" => $response));
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * porta alla login da amministartore
+     * @Route("/adminAccess", name="user_adminaccess")
+     * @Method("GET");
+     */
+    public function adminAccess(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->login = false;
+            $config->aclcode = "/adminAccess";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Lancio il render della view:
+            return $this->render("UserBundle:Default:adminLogin.html.twig");
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * login admin
+     * @Route("/loginProcessaDatiAdmin", name="user_loginadmin")
+     * @Method("POST");
+     */
+    public function loginAdmin(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->post = "UserBundle\Request\Post\\" . ucfirst(__FUNCTION__);
+            $config->login = false;
+            $config->aclcode = "/loginProcessaDatiAdmin";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Lancio il render della view:
+            return $this->render("<html><body>Sator arepo tenet opera rotas</body></html>", array("twig" => $response));
 
         } catch (HttpException $e) {
             return $this->get("MyException")->errorHttpHandler($e);

@@ -103,7 +103,7 @@ class Utente {
      *
      * Molti Utente sono associato a molti Profilo (profilo è una lista di profili)
      *
-     * @ORM\ManyToMany(targetEntity="Profilo",inversedBy="profiloUtente",cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Profilo",inversedBy="profiloUtente")
      * @ORM\JoinTable(name="utente_profilo")
      * @Groups({"Utente.profilo"})
      */

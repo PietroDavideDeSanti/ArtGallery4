@@ -11,4 +11,7 @@ use DbBundle\Entity\Autore;
 *
 */
 class AutoreRepository extends AbstractRepository {
+    
+    
+   
 }

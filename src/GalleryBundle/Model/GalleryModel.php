@@ -99,6 +99,103 @@ class GalleryModel {
         }
     }
 
+    public function cercaOpereInserite (GlobalVars $globalVars, Response $response){
+        try{
+            
+            //prendo idUtente dalla sessione
+            $idUtente=$globalVars->session->get("user")->getId();
+           
+            // tutte le tuple opera con l'id dell'utente preso dalla sesione
+            $tuple=$this->em->getRepository("DbBundle:Opera")->findBy(array('utenteId'=>$idUtente));
+            
+                        
+            $response->data = $tuple;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function dettaglioAutore (GlobalVars $globalVars, Response $response){
+        try{
+            $idAutore=$_POST["tasto"];
+                        
+            $autore=$this->em->getRepository("DbBundle:Autore")->find($idAutore);
+            
+            $response->data = $autore;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function eliminaOpera (GlobalVars $globalVars, Response $response){
+        try{
+            //prendo l'id dell'opera da eliminare
+            $idOpera=$_POST["tastoDelete"];
+            
+            //cerco l'opera 
+            $opera=$this->em->getRepository("DbBundle:Opera")->find($idOpera);
+            
+            $this->em->remove($opera);
+            $this->em->flush();
+            
+            $response->data = $this->cercaOpereInserite($globalVars, $response)->data;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function listaAutori (GlobalVars $globalVars, Response $response){
+        try{
+            
+            
+            $idUtente=$globalVars->session->get("user")->getId();
+            $autori=$this->em->getRepository("DbBundle:Opera")->getAuthors($this->em,$idUtente);
+
+            $response->data = $autori;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function cercaOpereAutore (GlobalVars $globalVars, Response $response){
+        try{
+            
+                
+            $idAutore=$_POST["tasto"];
+            $idUtente=$globalVars->session->get("user")->getId();
+            $opere=$this->em->getRepository("DbBundle:Opera")->findBy(array('autoreId'=> $idAutore,'utenteId'=>$idUtente));
+
+           
+            
+            $response->data = $opere;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function logOut (GlobalVars $globalVars, Response $response){
+        try{
+            
+            $globalVars->session->set("user",NULL);
+
+            $response->data = '';
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
     #####
 
 }
