@@ -41,4 +41,31 @@ class UtenteRepository extends AbstractRepository {
         return $utente->getId();
 
     }
+
+    public function isAdmin($em,$idUtente){
+
+        $connection = $em->getConnection();
+
+        $statement = $connection->prepare("SELECT *
+                                           FROM utente_profilo up join profilo p on up.profilo_id=p.id
+                                           WHERE utente_id=$idUtente");
+
+        $statement->execute();
+        // result contiene tutte le opere inserite dall'utente con id = $idUtente
+        $results = $statement->fetchAll();
+
+        $isAdmin=false;
+
+        foreach($results as $arr){
+            //completa
+            if($arr["nomeProfilo"]=="admin"){
+                $isAdmin=true;
+            }
+
+        }
+
+
+
+        return $isAdmin;
+    }
 }

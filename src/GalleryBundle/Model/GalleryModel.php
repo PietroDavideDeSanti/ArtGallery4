@@ -185,8 +185,8 @@ class GalleryModel {
 
     public function logOut (GlobalVars $globalVars, Response $response){
         try{
-            
-            $globalVars->session->set("user",NULL);
+
+            $globalVars->session->clear();
 
             $response->data = '';
             return $response;

@@ -39,9 +39,9 @@ class UserModel {
             $user=$repository->selectUserWhere($params->data["username"],$params->data["password"]);
 
 
-           if($user) {
+            if($user) {
                $globalVars->session->set("user",$user);
-           }
+            }
 
 
 
@@ -143,10 +143,32 @@ class UserModel {
     public function loginAdmin (GlobalVars $globalVars, Response $response){
         try{
             
-            //verifico se l'utente è un amministratore
-            die();
 
-            $response->data = '';
+            // admin è un booleano che vale true se l'utente è un admin
+
+            //verifico se l'utente è nel db
+            $repository= $this->em->getRepository("DbBundle:Utente");
+            $user=$repository->selectUserWhere($globalVars->params->data["username"],$globalVars->params->data["password"]);
+
+            if($user){
+
+                $idUtente=$user->getId();
+
+                //verifico se l'utente è un amministratore
+                $admin=$this->em->getRepository("DbBundle:Utente")->isAdmin($this->em,$idUtente);
+
+                if($admin){
+
+                    //metto in sessione l'admin (inserisco una stringa qualunque per dire che è stato effettuato un accesso come admin)
+                    $globalVars->session->set("admin","admin");
+                }
+
+            }
+
+
+
+
+            $response->data = $user;
             return $response;
 
         } catch (DBALException $e) {

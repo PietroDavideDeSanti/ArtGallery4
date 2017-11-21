@@ -275,7 +275,7 @@ class UserController extends K2Controller{
             // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
             
             // Lancio il render della view:
-            return $this->render("<html><body>Sator arepo tenet opera rotas</body></html>", array("twig" => $response));
+            return $this->render("GalleryBundle:Default:home.html.twig", array("twig" => $response));
 
         } catch (HttpException $e) {
             return $this->get("MyException")->errorHttpHandler($e);
