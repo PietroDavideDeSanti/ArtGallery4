@@ -92,11 +92,15 @@
 	
 <body class="bodyClass">
 
-{% if twig.data or app.session.get('user') or app.session.get('admin') %}
+{% if twig.data or app.session.get('user') or app.session.get('admin')  %}
 
-    
-    <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto {{ app.session.get('user').nome }}  !! </h2></header>
- 
+    {% if app.session.get('user') and app.session.get('admin') %}
+        <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto {{ app.session.get('user').nome }} (Admin) !! </h2></header>
+    {% elseif app.session.get('user') %}
+        <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto {{ app.session.get('user').nome }}  !! </h2></header>
+    {% elseif app.session.get('admin') %}
+        <header class='headerClass'> <h1>  Art Gallery </h1> <h2> Benvenuto {{ app.session.get('admin').getNome() }} (Admin) !! </h2></header>
+    {% endif  %}
     
                 <content class='headerClass'/>
     
@@ -117,11 +121,11 @@
  
 <div class='buttonContainer'>
 
-{% if app.session.get('admin') %}
-    <form action='/leggiDb' method='post'>
+        {% if app.session.get('admin') %}
+            <form action='/leggiDb' method='post'>
                  <button type='submit' name='dbNameAccess' class='buttonClass'> Accedi al dB </button>
-   </form>
-{% endif %}
+            </form>
+        {% endif %}
 
 </div>
 

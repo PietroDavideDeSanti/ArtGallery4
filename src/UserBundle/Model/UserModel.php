@@ -160,7 +160,7 @@ class UserModel {
                 if($admin){
 
                     //metto in sessione l'admin (inserisco una stringa qualunque per dire che è stato effettuato un accesso come admin)
-                    $globalVars->session->set("admin","admin");
+                    $globalVars->session->set("admin",$user);
                 }
 
             }
