@@ -53,7 +53,15 @@ class GalleryModel {
     public function processaDatiOpera (GlobalVars $globalVars, Response $response){
         try{
 
-            $idUtente=$globalVars->session->get("user")->getId();
+            if($globalVars->session->get("user")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            elseif($globalVars->session->get("user") && $globalVars->session->get("admin")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            else{
+                $idUtente = $globalVars->session->get("admin")->getId();
+            }
 
             $user = $this->em->getRepository("DbBundle:Utente")->find($idUtente);
 
@@ -101,9 +109,19 @@ class GalleryModel {
 
     public function cercaOpereInserite (GlobalVars $globalVars, Response $response){
         try{
+
+
             
             //prendo idUtente dalla sessione
-            $idUtente=$globalVars->session->get("user")->getId();
+            if($globalVars->session->get("user")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            elseif($globalVars->session->get("user") && $globalVars->session->get("admin")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            else{
+                $idUtente = $globalVars->session->get("admin")->getId();
+            }
            
             // tutte le tuple opera con l'id dell'utente preso dalla sesione
             $tuple=$this->em->getRepository("DbBundle:Opera")->findBy(array('utenteId'=>$idUtente));
@@ -152,9 +170,17 @@ class GalleryModel {
 
     public function listaAutori (GlobalVars $globalVars, Response $response){
         try{
-            
-            
-            $idUtente=$globalVars->session->get("user")->getId();
+
+
+            if($globalVars->session->get("user")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            elseif($globalVars->session->get("user") && $globalVars->session->get("admin")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            else{
+                $idUtente = $globalVars->session->get("admin")->getId();
+            }
             $autori=$this->em->getRepository("DbBundle:Opera")->getAuthors($this->em,$idUtente);
 
             $response->data = $autori;
@@ -170,7 +196,17 @@ class GalleryModel {
             
                 
             $idAutore=$_POST["tasto"];
-            $idUtente=$globalVars->session->get("user")->getId();
+
+            if($globalVars->session->get("user")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            elseif($globalVars->session->get("user") && $globalVars->session->get("admin")){
+                $idUtente = $globalVars->session->get("user")->getId();
+            }
+            else{
+                $idUtente = $globalVars->session->get("admin")->getId();
+            }
+
             $opere=$this->em->getRepository("DbBundle:Opera")->findBy(array('autoreId'=> $idAutore,'utenteId'=>$idUtente));
 
            
