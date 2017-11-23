@@ -3,6 +3,74 @@
 <head>
 	<title>inserimento opera</title>
                     <link href="/view/css/form.css" rel="stylesheet" type="text/css"> 
+
+    <style>
+
+        input[type=text], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=password], select {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .buttonClass1 {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            height:50px;
+            width:100px;
+
+        }
+        /*
+        button[type=submit]:hover {
+            background-color: #45a049;
+        }    */
+
+        .buttonClass1:hover {
+            background-color: #a2e5a2;
+        }
+
+        .buttonClass{
+            width: 50%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+
+        }
+        .buttonClass:hover {
+            background-color: #a2e5a2;
+        }
+
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -12,16 +80,23 @@
 <h1>Inserisci Opera</h1>
 
 <form action='/processaDatiOpera' method='post'>
-  <input type='text' placeholder='inserisci titolo' name='titolo' required>
- <input type='text' placeholder='inserisci tecnica' name='tecnica' required> 
- <input type='number' placeholder='inserisci dimensioni' name='dimensioni' required> 
- <input type='text' placeholder='inserisci data' name='data' required> </br>
- <div><h2>Inserisci dati autore:  </h2><img src='avatar.png' width='70' height='70' alt='avatar'/></div>
- <input type='text' placeholder='inserisci nome' name='nome' required> 
- <input type='number' placeholder='inserisci eta' name='eta' required> 
+    <div class="container">
+        <label><b>titolo</b></label>
+        <input type='text' placeholder='inserisci titolo' name='titolo' required>
+        <label><b>tecnica</b></label>
+        <input type='text' placeholder='inserisci tecnica' name='tecnica' required>
+        <label><b>Dimensioni</b></label></br>
+        <input type='number' placeholder='inserisci dimensioni' name='dimensioni' required></br>
+        <label><b>Data</b></label>
+        <input type='text' placeholder='inserisci data' name='data' required> </br>
+        <div><h2>Inserisci dati autore:  </h2><img src='avatar.png' width='70' height='70' alt='avatar'/></div>
+        <label><b>Nome</b></label>
+        <input type='text' placeholder='inserisci nome' name='nome' required>
+        <label><b>Età</b></label>
+        <input type='number' placeholder='inserisci eta' name='eta' required></br>
 
          <button type='submit' name='insertName' class='buttonClass' > inserisci opera </button>
-
+    </div>
 </form>
 
 
