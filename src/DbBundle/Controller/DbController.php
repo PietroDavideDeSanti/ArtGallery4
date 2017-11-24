@@ -10,6 +10,7 @@ use DbBundle\Model\DbModel;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 // Exception Libraries:
 use Symfony\Component\HttpKernel\Exception\HttpException;
@@ -88,6 +89,42 @@ class DbController extends K2Controller{
             
             // Lancio il render della view:
             return $this->render("DbBundle:Default:viewTabellaDb.html.twig", array("twig" => $response));
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * prova servizio
+     * @Route("/provaServizio", name="db_provaservizio")
+     * @Method("GET");
+     */
+    public function provaServizio(Request $request) {
+        try{
+
+
+            $config = new EndpointConfiguration();
+            $config->login = false;
+            $config->aclcode = "/provaServizio";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new DbModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Lancio il render della view:
+            return new Response("servizio ".$naming->getName());
 
         } catch (HttpException $e) {
             return $this->get("MyException")->errorHttpHandler($e);

@@ -78,6 +78,22 @@ class DbModel {
         }
     }
 
+    public function provaServizio (GlobalVars $globalVars, Response $response){
+        try{
+
+            $naming=$this->container->get("uv.naming");
+            $naming->setName("Marzullo");
+            dump($naming);
+            die();
+
+            $response->data = '';
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
     #####
 
 }

@@ -94,7 +94,7 @@
     {% for opera in twig.data %}
         
         <li>
-            {{ opera.titolo }}</br>{{opera.tecnica}}</br>{{opera.dimensioni}}</br>{{opera.getAutoreId().getNome()}}</br>
+            <h2>{{ opera.titolo }}</br>{{opera.tecnica}}</br>{{opera.dimensioni}}</br>{{opera.getAutoreId().getNome()}}</br></h2>
             <form action='/dettagliAutore' method='post'>
                 <button type='submit' name='tasto' class='buttonClass' value='{{opera.getAutoreId().getId()}}'>dettagli autore</button>
             </form>
