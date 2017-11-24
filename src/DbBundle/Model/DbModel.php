@@ -81,9 +81,11 @@ class DbModel {
     public function provaServizio (GlobalVars $globalVars, Response $response){
         try{
 
-            $naming=$this->container->get("uv.naming");
-            $naming->setName("Marzullo");
-            dump($naming);
+//            $naming=$this->container->get("uv.naming");
+//            $naming->setName("Marzullo");
+
+            $naming1=$this->container->get("uv.service1");
+            //dump($naming1);
             die();
 
             $response->data = '';

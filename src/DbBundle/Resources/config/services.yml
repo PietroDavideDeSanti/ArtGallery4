@@ -3,6 +3,14 @@ services:
          class: DbBundle\Services\Naming
          calls:
              - [stampaStringa]
+
+#   uv.service1:
+#         class: DbBundle\Services\Naming1
+#         calls:
+#            - [stampaStringa]
+#     arguments: ['@uv.naming']
+
+
 #    db.example:
 #        class: DbBundle\Example
 #        arguments: ["@service_id", "plain_value", "%parameter%"]
