@@ -11,6 +11,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Doctrine\Common\Persistence\ObjectManager as EntityManager;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
+
 class DbModel {
 
     private $em;
@@ -84,12 +85,39 @@ class DbModel {
 //            $naming=$this->container->get("uv.naming");
 //            $naming->setName("Marzullo");
 
-            $naming1=$this->container->get("uv.service1");
+            $naming1=$this->container->get("uv.service2");
             //dump($naming1);
             die();
 
             $response->data = '';
             return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function provaQuery (GlobalVars $globalVars, Response $response){
+        try{
+
+            // tutte le opere
+            // $opere=$this->em->getRepository("DbBundle:Opera")->selectAllOperas();
+            // tutte le opere con autore 8
+            // $opere=$this->em->getRepository("DbBundle:Opera")->selectOperasAuthor();
+            // tutte le opere con autore e tecnica
+            //$opere=$this->em->getRepository("DbBundle:Opera")->selectOperasAuthorTecnic();
+            // opera join autore
+
+            $opere=$this->em->getRepository("DbBundle:Opera")->operaJoinAutore();
+
+
+            dump($opere);
+            die();
+
+            $response->data = '';
+            return $response;
+
+
 
         } catch (DBALException $e) {
             throw new HttpException(500, $e->getMessage());

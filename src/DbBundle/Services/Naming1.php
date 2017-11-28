@@ -9,19 +9,27 @@ namespace DbBundle\Services;
 class Naming1
 {
     private $service;
+    private $stringa;
 
-    public function __construct($service){
+    public function __construct($service,$stringa){
         $this->service=$service;
+        $this->stringa=$stringa;
+
 
     }
 
 
     public function stampaStringa(){
-        echo "seconda stringa da stampare!";
+        echo "seconda stringa da stampare! ".$this->stringa;
     }
 
     public function stampa(){
 
         $this->service->stampaStringa();
+    }
+
+    public function provaStampa($st){
+
+
     }
 }

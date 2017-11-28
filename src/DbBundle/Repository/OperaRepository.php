@@ -44,4 +44,125 @@ class OperaRepository extends AbstractRepository {
         return $results;
         
     }
+
+    public function selectAllOperas(){
+
+        //array delle entity coinvolte
+        $arrEntities = array(
+            'DbBundle:Opera',
+
+        );
+
+        // Legami tra le entity (INNER JOIN...):
+        $arrJoins = array(
+
+        );
+
+        // JOIN conditions (...ON...)
+        $arrJoinsCondition = array(
+
+        );
+
+        // WHERE conditions (...WHERE...)
+        $arrParams = array(
+
+        );
+
+    return parent::get_all_active($arrEntities, $arrJoins, $arrParams, $arrJoinsCondition);
+
+    }
+
+    public function selectOperasAuthor(){
+
+        //array delle entity coinvolte
+        $arrEntities = array(
+            'DbBundle:Opera',
+
+        );
+
+        // Legami tra le entity (INNER JOIN...):
+        $arrJoins = array(
+
+        );
+
+        // JOIN conditions (...ON...)
+        $arrJoinsCondition = array(
+
+        );
+
+        // WHERE conditions (...WHERE...)
+        $arrParams = array(
+            'Opera.autoreId = 8'
+        );
+
+        return parent::get_all_active($arrEntities, $arrJoins, $arrParams, $arrJoinsCondition);
+
+
+    }
+
+
+    public function selectOperasAuthorTecnic(){
+
+        //array delle entity coinvolte
+        $arrEntities = array(
+            'DbBundle:Opera',
+
+        );
+
+        // Legami tra le entity (INNER JOIN...):
+        $arrJoins = array(
+
+        );
+
+        // JOIN conditions (...ON...)
+        $arrJoinsCondition = array(
+
+        );
+
+        // WHERE conditions (...WHERE...)
+        $arrParams = array(
+            "Opera.autoreId = 8",
+            "Opera.tecnica = 'erterte'",
+        );
+
+        return parent::get_all_active($arrEntities, $arrJoins, $arrParams, $arrJoinsCondition);
+
+
+    }
+
+
+    public function operaJoinAutore(){
+        //array delle entity coinvolte
+        $arrEntities = array(
+            'DbBundle:Opera',
+            'DbBundle:Autore',
+        );
+
+        // Legami tra le entity (INNER JOIN...):
+        $arrJoins = array(
+            AbstractRepository::$inner.' Opera.autoreId'=>'Autore',
+        );
+
+        // JOIN conditions (...ON...)
+        $arrJoinsCondition = array(
+            AbstractRepository::$inner.' Opera.autoreId'=>'Autore.id = 8',
+        );
+
+        // WHERE conditions (...WHERE...)
+        $arrParams = array(
+
+            "Opera.tecnica = 'erterte'",
+
+        );
+
+        return parent::get_one_active($arrEntities, $arrJoins, $arrParams, $arrJoinsCondition);
+
+
+    }
+
+    public function addOpera($entity){
+
+        return parent::insert_entity($entity);
+
+    }
 }

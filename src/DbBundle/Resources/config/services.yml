@@ -1,14 +1,27 @@
+parameters:
+     uv.param: "stringaParametro"
+
 services:
      uv.naming:
          class: DbBundle\Services\Naming
+
+
+     uv.service1:
+         class: DbBundle\Services\Naming1
          calls:
              - [stampaStringa]
+         arguments: ["@uv.naming","%uv.param%"]
 
-#   uv.service1:
-#         class: DbBundle\Services\Naming1
-#         calls:
-#            - [stampaStringa]
-#     arguments: ['@uv.naming']
+     uv.service2:
+         class: DbBundle\Services\Naming1
+         calls:
+             - [stampaStringa]
+         arguments: ["@uv.naming","@=service('uv.naming').ritornaStringa()"]
+
+     uv.service3:
+         class: DbBundle\Services\Naming1
+         calls:
+             - [provaStampa,["ciao"]]
 
 
 #    db.example:

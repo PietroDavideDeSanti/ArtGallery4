@@ -131,6 +131,43 @@ class DbController extends K2Controller{
         }
     }
 
-    #####
+
+    /**
+     * prova servizio
+     * @Route("/provaQuery", name="db_provaservizio")
+     * @Method("GET");
+     */
+    public function provaQuery(Request $request) {
+        try{
+
+
+            $config = new EndpointConfiguration();
+            $config->login = false;
+            $config->aclcode = "/provaQuery";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new DbModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+
+            // Lancio il render della view:
+            return new Response("niente");
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
 
 }

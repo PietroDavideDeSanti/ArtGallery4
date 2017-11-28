@@ -20,6 +20,10 @@ class Naming
     }
 
     public function stampaStringa(){
-        echo "stringa da stampare!";
+        echo "stringa da stampare! ";
+    }
+
+    public function ritornaStringa(){
+        return "casa";
     }
 }
