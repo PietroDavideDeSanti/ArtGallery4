@@ -124,6 +124,21 @@ class DbModel {
         }
     }
 
+    public function provaPostman (GlobalVars $globalVars, Response $response){
+        try{
+            $arr=["animali" => ["cane","gatto"],"persone" =>["Peppe","Marco"]];
+            $response->data = $arr;
+
+
+
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+
     #####
 
 }
