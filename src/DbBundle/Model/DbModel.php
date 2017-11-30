@@ -29,6 +29,8 @@ class DbModel {
     public function leggiDb (GlobalVars $globalVars, Response $response){
         try{
 
+
+
             $response->data = '';
             return $response;
 
@@ -138,6 +140,23 @@ class DbModel {
         }
     }
 
+
+    public function provaPostman1 (GlobalVars $globalVars, Response $response){
+        try{
+            $params = $globalVars->params->data;
+
+            $arr=[];
+            $arr[]=$params["nome"];
+            $arr[]=$params["cognome"];
+
+
+            $response->data = $arr;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
 
     #####
 

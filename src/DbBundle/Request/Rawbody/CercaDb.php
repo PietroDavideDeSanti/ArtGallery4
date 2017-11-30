@@ -1,6 +1,6 @@
 <?php
 
-namespace DbBundle\Request\Post;
+namespace DbBundle\Request\Rawbody;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -18,15 +18,26 @@ class CercaDb {
      * @Assert\NotBlank()
      */
     protected $tabella;
-    
-    
-    function getTabella() {
+
+    /**
+     * @return mixed
+     */
+    public function getTabella()
+    {
         return $this->tabella;
     }
 
-    function setTabella($tabella) {
+    /**
+     * @param mixed $tabella
+     */
+    public function setTabella($tabella)
+    {
         $this->tabella = $tabella;
     }
+
+
+    
+
 
 
 

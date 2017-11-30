@@ -282,6 +282,115 @@ class UserController extends K2Controller{
         }
     }
 
+    /**
+     * prova ajax
+     * @Route("/endPointAjax", name="user_provaajax")
+     * @Method("POST");
+     */
+    public function provaAjax(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->rawbody = "UserBundle\Request\Rawbody\\" . ucfirst(__FUNCTION__);
+            $config->login = false;
+            $config->aclcode = "/endPonitAjax";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Restituisco il JSON:
+            return new JsonResponse($response, 200);
+
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * prova validazione raw
+     * @Route("/provaRawBody", name="user_provavalidazioneraw")
+     * @Method("POST");
+     */
+    public function provaValidazioneRaw(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->rawbody = "UserBundle\Request\Rawbody\\" . ucfirst(__FUNCTION__);
+            $config->login = false;
+            $config->aclcode = "/provaRawBody";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Restituisco il JSON:
+            return new JsonResponse($response, 200);
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * prova di una chiamata ajax
+     * @Route("/endPointAjax1", name="user_provaajax1")
+     * @Method("POST");
+     */
+    public function provaAjax1(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->rawbody = "UserBundle\Request\Rawbody\\" . ucfirst(__FUNCTION__);
+            $config->login = false;
+            $config->aclcode = "/endPointAjax1";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Restituisco il JSON:
+            return new JsonResponse($response, 200);
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
     #####
 
 }

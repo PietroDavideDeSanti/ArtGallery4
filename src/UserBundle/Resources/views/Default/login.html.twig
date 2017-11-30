@@ -5,6 +5,7 @@
 	<title>Login Art Gallery</title>
 	<!-- <link href="foglioDiStile.css" rel="stylesheet" type="text/css"> -->
 <style>
+
 input[type=text], select {
     width: 100%;
     padding: 12px 20px;
@@ -117,11 +118,11 @@ div {
     
     <h2>prova chiamata ajax</h2>
     <form action="javascript:void(0);"> 
-        <input type="text"  id="idNome" value="">
-        <input type="text"  id="idCognome" value="">
+        <input type="text" name="primoCampo" id="idNome" value="">
+        <input type="text" name="secondoCampo" id="idCognome" value="">
         <button type="submit"  id="click_button"> Click</button>
     
-   </form>
+    </form>
 
 </body>
 
@@ -136,8 +137,8 @@ div {
 
             // La popolo con tutti i dati del form
             parametri =  {
-                "idNome" : $("#idNome").val(),
-                "idCognome" : $("#idCognome").val(),
+                "primoCampo" : $("#idNome").val(),
+                "secondoCampo" : $("#idCognome").val(),
                 
             };
 
@@ -154,10 +155,12 @@ div {
                 'contentType': 'application/json',
                 success: function(data) {
                     console.log(data);
+
                 },
                 error: function(xhr, error){
                     console.debug(xhr);
                     console.debug(error);
+                    alert("campi vuoti!");
                 },
             });
 
@@ -169,6 +172,62 @@ div {
 
 
 </script>
+
+
+    <form action="javascript:void(0);">
+
+        <button type="submit"  id="ajaxButtonId"> Ajax button</button>
+
+    </form>
+
+<script>
+
+    $(document).ready(function(){
+
+        $("#ajaxButtonId").click(function(){
+
+            // Creo una variabile:
+            var parametri;
+
+            // La popolo con tutti i dati del form
+            parametri =  {
+                "primoCampo" : "Carlo",
+                "secondoCampo" : "Marco",
+
+            };
+
+            input = JSON.stringify(parametri);
+
+            console.log(input);
+
+            // Eseguo una chiamata AJAX verso l'endpoint che voglio testare
+            $.ajax ({
+                'url' : '/endPointAjax1',
+                'data': input,
+                'type': 'POST',
+                'processData': false,
+                'contentType': 'application/json',
+                success: function(data) {
+                    console.log(data);
+                    alert("contenuto chiamata: "+ data.data);
+
+                },
+                error: function(xhr, error){
+                    console.debug(xhr);
+                    console.debug(error);
+                    alert("campi vuoti!");
+                },
+            });
+
+
+        });
+
+
+    });
+
+
+</script>
+
 
 
 </html>

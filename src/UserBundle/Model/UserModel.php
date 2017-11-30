@@ -176,6 +176,51 @@ class UserModel {
         }
     }
 
+    public function provaAjax (GlobalVars $globalVars, Response $response){
+        try{
+
+            dump($globalVars->params->data["primoCampo"]);
+
+            $response->data = $globalVars->params->data["primoCampo"];
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function provaValidazioneRaw (GlobalVars $globalVars, Response $response){
+        try{
+
+            $response->data = "tutto OK";
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function provaAjax1 (GlobalVars $globalVars, Response $response){
+        try{
+
+
+            $arr=[];
+
+            $c1=$globalVars->params->data["primoCampo"];
+            $c2=$globalVars->params->data["secondoCampo"];
+
+            $arr[]=$c1;
+            $arr[]=$c2;
+
+
+            $response->data = $arr;
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
     #####
 
 }

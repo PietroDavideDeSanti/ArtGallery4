@@ -69,6 +69,7 @@ class DbController extends K2Controller{
         
             $config = new EndpointConfiguration();
             $config->post = "DbBundle\Request\Post\\" . ucfirst(__FUNCTION__);
+            //$config->rawbody = "DbBundle\Request\Rawbody\\" . ucfirst(__FUNCTION__);
             $config->login = false;
             $config->aclcode = "/cercaDb";
             $config->context = array(
@@ -180,6 +181,42 @@ class DbController extends K2Controller{
             $config = new EndpointConfiguration();
             $config->login = false;
             $config->aclcode = "/provaPostman";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new DbModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Restituisco il JSON:
+            return new JsonResponse($response, 200);
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * prova di postman
+     * @Route("/provaPostman1", name="db_provapostman1")
+     * @Method("POST");
+     */
+    public function provaPostman1(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->rawbody = "DbBundle\Request\Rawbody\\" . ucfirst(__FUNCTION__);
+            $config->login = false;
+            $config->aclcode = "/provaPostman1";
             $config->context = array(
             );
 
