@@ -135,7 +135,7 @@ class DbController extends K2Controller{
 
     /**
      * prova servizio
-     * @Route("/provaQuery", name="db_provaservizio")
+     * @Route("/provaQuery", name="db_provaquery")
      * @Method("GET");
      */
     public function provaQuery(Request $request) {
