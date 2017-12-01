@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a59f0987-70b0-475a-9947-6e5b4575dfb7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/DbBundle/Request/Rawbody/CercaDb.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/DbBundle/Request/Rawbody/ProvaPostman1.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UserBundle/Request/Rawbody/ProvaAjax.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/UserBundle/Request/Rawbody/ProvaAjax1.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DbBundle/Controller/DbController.php" afterPath="$PROJECT_DIR$/src/DbBundle/Controller/DbController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DbBundle/Model/DbModel.php" afterPath="$PROJECT_DIR$/src/DbBundle/Model/DbModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DbBundle/Request/Post/CercaDb.php" afterPath="$PROJECT_DIR$/src/DbBundle/Request/Post/CercaDb.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GalleryBundle/Resources/views/Default/home.html.twig" afterPath="$PROJECT_DIR$/src/GalleryBundle/Resources/views/Default/home.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Controller/UserController.php" afterPath="$PROJECT_DIR$/src/UserBundle/Controller/UserController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Model/UserModel.php" afterPath="$PROJECT_DIR$/src/UserBundle/Model/UserModel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/Default/login.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/Default/login.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,9 +27,32 @@
       <file leaf-file-name="login.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/Default/login.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="214" column="44" lean-forward="true" selection-start-line="214" selection-start-column="44" selection-end-line="214" selection-end-column="44" />
+            <state relative-caret-position="2063">
+              <caret line="219" column="15" lean-forward="false" selection-start-line="219" selection-start-column="15" selection-end-line="219" selection-end-column="15" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DbController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/DbBundle/Controller/DbController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-562">
+              <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="OperaRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/DbBundle/Repository/OperaRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-693">
+              <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+              <folding>
+                <marker date="1511884066129" expanded="true" signature="728:981" ph="SELECT disti... *" />
+                <marker date="1511884066129" expanded="true" signature="813:933" ph="SELECT * FRO... opera" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -48,18 +60,28 @@
       <file leaf-file-name="UserController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/UserController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="381" column="29" lean-forward="false" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
+            <state relative-caret-position="194">
+              <caret line="381" column="27" lean-forward="false" selection-start-line="381" selection-start-column="27" selection-end-line="381" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProvaAjax1.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Request/Rawbody/ProvaAjax1.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Model/UserModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="86">
-              <caret line="216" column="29" lean-forward="true" selection-start-line="216" selection-start-column="29" selection-end-line="216" selection-end-column="29" />
+            <state relative-caret-position="-3772">
+              <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -198,6 +220,19 @@
               <item name="ArtGallery4" type="b2602c69:ProjectViewProjectNode" />
               <item name="ArtGallery4" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="DbBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ArtGallery4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ArtGallery4" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="DbBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Repository" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ArtGallery4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ArtGallery4" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -206,6 +241,21 @@
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Model" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ArtGallery4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ArtGallery4" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Request" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="ArtGallery4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ArtGallery4" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Request" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Rawbody" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="ArtGallery4" type="b2602c69:ProjectViewProjectNode" />
@@ -277,24 +327,26 @@
       <workItem from="1511857926135" duration="469000" />
       <workItem from="1511866126849" duration="14517000" />
       <workItem from="1511947934551" duration="5097000" />
-      <workItem from="1512030118025" duration="23352000" />
+      <workItem from="1512030118025" duration="23998000" />
+      <workItem from="1512116266996" duration="4311000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="196033000" />
+    <option name="totallyTimeSpent" value="200990000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1377" y="126" width="1388" height="750" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3271605" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24691358" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294753" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47544205" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5815324" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33024693" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.076620825" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -531,7 +583,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="275">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -574,7 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1575">
           <caret line="84" column="31" lean-forward="false" selection-start-line="84" selection-start-column="31" selection-end-line="84" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -593,22 +643,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DbBundle/Repository/OperaRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <marker date="1511884066129" expanded="true" signature="728:981" ph="SELECT disti... *" />
-            <marker date="1511884066129" expanded="true" signature="813:933" ph="SELECT * FRO... opera" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/DbBundle/Resources/views/Default/viewCercaDb.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="5" column="30" lean-forward="false" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,7 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="86">
           <caret line="16" column="8" lean-forward="false" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -624,7 +661,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="38" column="4" lean-forward="false" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -632,15 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DbBundle/Controller/DbController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -666,7 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="161" column="0" lean-forward="false" selection-start-line="161" selection-start-column="0" selection-end-line="161" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -674,15 +700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="66" column="7" lean-forward="false" selection-start-line="66" selection-start-column="7" selection-end-line="66" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Request/Rawbody/ProvaAjax1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -694,26 +711,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Model/UserModel.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3772">
+          <caret line="25" column="13" lean-forward="false" selection-start-line="25" selection-start-column="13" selection-end-line="25" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Request/Rawbody/ProvaAjax1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/Default/login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="214" column="44" lean-forward="true" selection-start-line="214" selection-start-column="44" selection-end-line="214" selection-end-column="44" />
+        <state relative-caret-position="2063">
+          <caret line="219" column="15" lean-forward="false" selection-start-line="219" selection-start-column="15" selection-end-line="219" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/UserController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="381" column="29" lean-forward="false" selection-start-line="381" selection-start-column="29" selection-end-line="381" selection-end-column="29" />
+        <state relative-caret-position="194">
+          <caret line="381" column="27" lean-forward="false" selection-start-line="381" selection-start-column="27" selection-end-line="381" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Model/UserModel.php">
+    <entry file="file://$PROJECT_DIR$/src/DbBundle/Repository/OperaRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="86">
-          <caret line="216" column="29" lean-forward="true" selection-start-line="216" selection-start-column="29" selection-end-line="216" selection-end-column="29" />
+        <state relative-caret-position="-693">
+          <caret line="79" column="0" lean-forward="true" selection-start-line="79" selection-start-column="0" selection-end-line="79" selection-end-column="0" />
+          <folding>
+            <marker date="1511884066129" expanded="true" signature="728:981" ph="SELECT disti... *" />
+            <marker date="1511884066129" expanded="true" signature="813:933" ph="SELECT * FRO... opera" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DbBundle/Controller/DbController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-562">
+          <caret line="71" column="14" lean-forward="false" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
           <folding />
         </state>
       </provider>
