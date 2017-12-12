@@ -391,6 +391,113 @@ class UserController extends K2Controller{
         }
     }
 
+    /**
+     * porta alla pagina drgli element
+     * @Route("/pageElements", name="user_pageElement")
+     * @Method("GET");
+     */
+    public function pageElements(Request $request) {
+        try{
+
+            $config = new EndpointConfiguration();
+            $config->login = false;
+            $config->aclcode = "/pageElements";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Lancio il render della view:
+            return $this->render("UserBundle:Default:pageElements.html.twig", array("twig" => $response));
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * form element
+     * @Route("/pageElementsElement", name="user_pageelements_element")
+     * @Method("GET");
+     */
+    public function pageElements_element(Request $request) {
+        try{
+
+
+            $config = new EndpointConfiguration();
+            $config->login = false;
+            $config->aclcode = "/pageElementsElement";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Lancio il render della view:
+            return $this->render("pageElements.html.twig", array("twig" => $response));
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
+    /**
+     * indirizza alla form di element
+     * @Route("/formElement", name="user_formelement")
+     * @Method("GET");
+     */
+    public function formElement(Request $request) {
+        try{
+
+
+            $config = new EndpointConfiguration();
+            $config->login = false;
+            $config->aclcode = "/formElement";
+            $config->context = array(
+            );
+
+            // Inizializzo in globalVars tutti i dati da passare al Model (+ gestione degli error code 400 - 401 - 403):
+            $globalVars = $this->validateRequest($request, $config);
+
+            // Inizializzo la risposta:
+            $response = $this->initResponse($config, $globalVars);
+
+            // Model *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            $em = $this->getDoctrine()->getManager();
+            $container = $this->container;
+            $model = new UserModel($em, $container);
+            $response = $model->{__FUNCTION__}($globalVars, $response);
+            // *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *  *
+            
+            // Lancio il render della view:
+            return $this->render("UserBundle:Default:pageSecond.html.twig", array("twig" => $response));
+
+        } catch (HttpException $e) {
+            return $this->get("MyException")->errorHttpHandler($e);
+        }
+    }
+
     #####
 
 }

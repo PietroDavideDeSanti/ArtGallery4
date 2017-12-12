@@ -221,6 +221,39 @@ class UserModel {
         }
     }
 
+    public function pageElements (GlobalVars $globalVars, Response $response){
+        try{
+
+            $response->data = '';
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function pageElements_element (GlobalVars $globalVars, Response $response){
+        try{
+
+            $response->data = '';
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
+    public function formElement (GlobalVars $globalVars, Response $response){
+        try{
+
+            $response->data = '';
+            return $response;
+
+        } catch (DBALException $e) {
+            throw new HttpException(500, $e->getMessage());
+        }
+    }
+
     #####
 
 }
